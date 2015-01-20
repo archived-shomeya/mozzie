@@ -9,16 +9,11 @@
 
 
 module.exports = (robot) ->
- 
-  blacklist = []
-  if process.env.HUBOT_ROOMS_THAT_HATE_FUN != null
-    blacklist = process.env.HUBOT_ROOMS_THAT_HATE_FUN.split(',')
-  
+   
   robot.hear /suck it/i, (msg) ->
     room = msg['message']['room']
-    if blacklist.indexOf(room) < 0
-      imageMe msg, "squirrel drinking from straw", (url) ->
-        msg.send url 
+    imageMe msg, "squirrel drinking from straw", (url) ->
+      msg.send url 
 
 imageMe = (msg, query, cb) ->
   q = v: '1.0', rsz: '8', q: query, safe: 'active'
